@@ -38,8 +38,11 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ./gradlew :app:installDebug
 ```
 
-## Fonctionnalités restantes
+## Fonctionnalités restantes (avant publication Play Store)
 
-- Monétisation AdMob (identifiants de test)
-- Google Play Billing (produits non créés)
-- Publication Play Store (keystore, politique confidentialité)
+- Intégration AdMob dans `MainActivity` (dépendance + initialisation avec identifiant de test)
+- Intégration Google Play Billing dans `MainActivity` (produits `retrogame_premium` et `retrogame_abonnement` non créés dans Play Console)
+- Publication Play Store (nécessite accès Play Console et paiement du compte développeur)
+- Politique de confidentialité rédigée : `docs/privacy-policy.md` (OK)
+- APK release signé : `app-release-signed.apk` (5,7 Mo) créé avec `retrogame-release.jks` (OK)
+- Keystore : `retrogame-release.jks` générée (OK)
