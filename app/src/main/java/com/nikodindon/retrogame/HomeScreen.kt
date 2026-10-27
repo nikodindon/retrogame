@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onOpenSettings: () -> Unit = {}) {
     Column(
-        modifier = modifier.fillMaxSize().padding(24.dp),
+        modifier = modifier.fillMaxSize().padding(24.dp).statusBarsPadding().navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {

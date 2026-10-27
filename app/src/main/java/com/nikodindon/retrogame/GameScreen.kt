@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import kotlinx.coroutines.delay
 
 @Composable
@@ -55,7 +57,7 @@ fun GameScreen(modifier: Modifier = Modifier, onBackToMenu: () -> Unit = {}) {
         result
     }
 
-    Column(modifier = modifier.fillMaxSize().padding(8.dp)) {
+    Column(modifier = modifier.fillMaxSize().padding(8.dp).statusBarsPadding().navigationBarsPadding()) {
         // Bandeau amélioré avec fond semi-transparent
         Box(modifier = Modifier.fillMaxWidth().background(Color(0xFF111122)).border(1.dp, Color(0xFF333333)).padding(8.dp)) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
