@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.delay
 
 @Composable
@@ -85,6 +86,10 @@ fun GameScreen(modifier: Modifier = Modifier, onBackToMenu: () -> Unit = {}) {
             }
             // Écran de fin
             if (engine.gameOver) {
+                val context = LocalContext.current
+                LaunchedEffect(engine.gameOver) {
+                    ScoreStorage.saveBest(context, engine.score)
+                }
                 Box(modifier = Modifier.fillMaxSize().background(Color(0xAA000000)), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("PERDU !", style = MaterialTheme.typography.displayMedium, color = Color.Red)

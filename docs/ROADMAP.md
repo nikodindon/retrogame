@@ -8,11 +8,15 @@
 - Architecture Compose + interface simple.
 - Monétisation non configurée.
 
-## v0.2 — Extension UX
-- Persistance du meilleur score.
-- Sons et vibration optionnels.
-- Amélioration des animations.
-- Intégration AdMob de test.
+## v0.2 — Extension UX (terminée)
+- Persistance du meilleur score (`ScoreStorage` via SharedPreferences)
+- Écran d'accueil avec catalogue et bouton Paramètres
+- Menu paramètres (son / vibration)
+- Navigation complète : Accueil ↔ Jeu ↔ Paramètres
+- Bandeau visible et boutons non masqués (`statusBarsPadding` / `navigationBarsPadding`)
+- Sons de jeu (`ToneGenerator`) sur verrouillage et fin de partie
+- Tests unitaires (`GameEngineTest`) passants
+- Écran "PERDU !" avec score final et bouton Rejouer
 
 ## v0.3 — Space Invaders
 - Nouveau jeu dans le catalogue.
