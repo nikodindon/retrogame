@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}) {
+fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onOpenSettings: () -> Unit = {}) {
     Column(
         modifier = modifier.fillMaxSize().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -94,6 +94,9 @@ fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}) {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = onOpenSettings, modifier = Modifier.fillMaxWidth()) {
+            Text("Paramètres")
+        }
         Text("v0.1 — Première version installable", style = MaterialTheme.typography.bodySmall, color = Color(0xFF555555))
     }
 }
