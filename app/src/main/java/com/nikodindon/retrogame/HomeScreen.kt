@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onPlaySpaceInvaders: () -> Unit = {}, onOpenSettings: () -> Unit = {}) {
+fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onPlaySpaceInvaders: () -> Unit = {}, onPlayFrogger: () -> Unit = {}, onPlayAsteroids: () -> Unit = {}, onOpenSettings: () -> Unit = {}) {
     Column(
         modifier = modifier.fillMaxSize().padding(24.dp).statusBarsPadding().navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -95,8 +95,54 @@ fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onP
             }
         }
 
-        // Cartes futurs jeux (bientôt)
-        listOf("Frogger", "Asteroids").forEach { name ->
+        // Frogger (v0.4)
+        Card(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF2E3B2E))
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp).fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier.size(48.dp).background(Color(0xFF8BC34A), shape = RoundedCornerShape(8.dp)),
+                    contentAlignment = Alignment.Center
+                ) { Text("FR", color = Color.Black, style = MaterialTheme.typography.headlineMedium) }
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text("FROGGER", style = MaterialTheme.typography.titleMedium, color = Color.White)
+                    Text("Disponible — v0.4", style = MaterialTheme.typography.bodySmall, color = Color(0xFFCCCCCC))
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Button(onClick = onPlayFrogger) { Text("Jouer") }
+            }
+        }
+
+        // Asteroids (v0.5)
+        Card(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF2E2E3A))
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp).fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier.size(48.dp).background(Color(0xFFFF9800), shape = RoundedCornerShape(8.dp)),
+                    contentAlignment = Alignment.Center
+                ) { Text("AS", color = Color.Black, style = MaterialTheme.typography.headlineMedium) }
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text("ASTEROIDS", style = MaterialTheme.typography.titleMedium, color = Color.White)
+                    Text("Disponible — v0.5", style = MaterialTheme.typography.bodySmall, color = Color(0xFFCCCCCC))
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Button(onClick = onPlayAsteroids) { Text("Jouer") }
+            }
+        }
+
+        // Cartes futurs jeux
+        listOf("Pac-Man (v0.6)", "Breakout (v0.7)").forEach { name ->
             Card(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFF12121A))

@@ -31,6 +31,14 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         onBackToMenu = { screen = "home" }
                     )
+                    "frogger" -> FroggerScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        onBackToMenu = { screen = "home" }
+                    )
+                    "asteroids" -> AsteroidsScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        onBackToMenu = { screen = "home" }
+                    )
                     "settings" -> SettingsScreen(
                         modifier = Modifier.fillMaxSize(),
                         onBack = { screen = "home" }
@@ -39,6 +47,8 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         onPlayTetris = { screen = "game" },
                         onPlaySpaceInvaders = { screen = "space_invaders" },
+                        onPlayFrogger = { screen = "frogger" },
+                        onPlayAsteroids = { screen = "asteroids" },
                         onOpenSettings = { screen = "settings" }
                     )
                 }
