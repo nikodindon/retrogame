@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onOpenSettings: () -> Unit = {}) {
+fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onPlaySpaceInvaders: () -> Unit = {}, onOpenSettings: () -> Unit = {}) {
     Column(
         modifier = modifier.fillMaxSize().padding(24.dp).statusBarsPadding().navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -68,8 +68,35 @@ fun HomeScreen(modifier: Modifier = Modifier, onPlayTetris: () -> Unit = {}, onO
             }
         }
 
+        // Space Invaders (v0.3)
+        Card(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2E1A))
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp).fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier.size(48.dp).background(Color(0xFF2ECC71), shape = RoundedCornerShape(8.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("SI", color = Color.Black, style = MaterialTheme.typography.headlineMedium)
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text("SPACE INVADERS", style = MaterialTheme.typography.titleMedium, color = Color.White)
+                    Text("Disponible — v0.3", style = MaterialTheme.typography.bodySmall, color = Color(0xFFCCCCCC))
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Button(onClick = onPlaySpaceInvaders) {
+                    Text("Jouer")
+                }
+            }
+        }
+
         // Cartes futurs jeux (bientôt)
-        listOf("Space Invaders", "Frogger", "Asteroids").forEach { name ->
+        listOf("Frogger", "Asteroids").forEach { name ->
             Card(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFF12121A))

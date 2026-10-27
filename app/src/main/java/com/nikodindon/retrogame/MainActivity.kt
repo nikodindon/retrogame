@@ -27,6 +27,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         onBackToMenu = { screen = "home" }
                     )
+                    "space_invaders" -> SpaceInvadersScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        onBackToMenu = { screen = "home" }
+                    )
                     "settings" -> SettingsScreen(
                         modifier = Modifier.fillMaxSize(),
                         onBack = { screen = "home" }
@@ -34,6 +38,7 @@ class MainActivity : ComponentActivity() {
                     else -> HomeScreen(
                         modifier = Modifier.fillMaxSize(),
                         onPlayTetris = { screen = "game" },
+                        onPlaySpaceInvaders = { screen = "space_invaders" },
                         onOpenSettings = { screen = "settings" }
                     )
                 }
