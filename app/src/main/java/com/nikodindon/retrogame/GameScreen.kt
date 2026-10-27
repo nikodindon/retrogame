@@ -14,40 +14,53 @@ import kotlinx.coroutines.delay
 @Composable
 fun GameScreen(modifier: Modifier = Modifier) {
     val engine = remember { GameEngine() }
-    var gridState by remember { mutableStateOf(engine.getGridSnapshot()) }
-    var score by remember { mutableStateOf(0) }
-    var level by remember { mutableStateOf(1) }
-    var lines by remember { mutableStateOf(0) }
-    var over by remember { mutableStateOf(false) }
+    var refresh by remember { mutableStateOf(0) }
 
     LaunchedEffect(Unit) {
         engine.reset()
+        refresh++
         while (true) {
-            delay(600L)
-            if (!over) {
-                val locked = engine.step()
-                gridState = engine.getGridSnapshot()
-                score = engine.score
-                level = engine.level
-                lines = engine.lines
-                over = engine.gameOver
+            delay(500L)
+            if (!engine.gameOver) {
+                engine.step()
+                refresh++
             }
         }
+    }
+
+    // Calcul des cellules visibles (grid + pièce courante)
+    val visibleCells = remember(refresh) {
+        val result = mutableSetOf<Pair<Int, Int>>()
+        for (r in 0 until engine.rows) {
+            for (c in 0 until engine.cols) {
+                if (engine.getCell(c, r)) result.add(Pair(c, r))
+            }
+        }
+        engine.current?.let { piece ->
+            for ((dx, dy) in piece.cells) {
+                val cx = piece.x + dx
+                val cy = piece.y + dy
+                if (cx in 0 until engine.cols && cy in 0 until engine.rows) {
+                    result.add(Pair(cx, cy))
+                }
+            }
+        }
+        result
     }
 
     Column(modifier = modifier.fillMaxSize().padding(8.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text("RetroGame Tetris", style = MaterialTheme.typography.headlineSmall)
             Column(horizontalAlignment = Alignment.End) {
-                Text("Score: $score")
-                Text("Level: $level  Lines: $lines")
+                Text("Score: ${engine.score}")
+                Text("Level: ${engine.level}  Lines: ${engine.lines}")
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
         Box(modifier = Modifier.weight(1f).fillMaxWidth().border(2.dp, Color.DarkGray)) {
             for (r in 0 until 20) {
                 for (c in 0 until 10) {
-                    val filled = engine.getCell(c, r)
+                    val filled = visibleCells.contains(Pair(c, r))
                     Box(modifier = Modifier
                         .width(28.dp)
                         .height(28.dp)
@@ -60,11 +73,11 @@ fun GameScreen(modifier: Modifier = Modifier) {
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = { engine.moveLeft() }) { Text("<") }
-            Button(onClick = { engine.rotate() }) { Text("Rot") }
-            Button(onClick = { engine.hardDrop() }) { Text("Drop") }
-            Button(onClick = { engine.moveRight() }) { Text(">") }
-            Button(onClick = { engine.reset(); over = false; gridState = engine.getGridSnapshot() }) { Text("Restart") }
+            Button(onClick = { engine.moveLeft(); refresh++ }) { Text("<") }
+            Button(onClick = { engine.rotate(); refresh++ }) { Text("Rot") }
+            Button(onClick = { engine.hardDrop(); refresh++ }) { Text("Drop") }
+            Button(onClick = { engine.moveRight(); refresh++ }) { Text(">") }
+            Button(onClick = { engine.reset(); refresh++ }) { Text("Restart") }
         }
     }
 }
