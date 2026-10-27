@@ -2,7 +2,7 @@
 
 Application Android native (Kotlin + Jetpack Compose) proposant un catalogue de jeux d'arcade rétro.
 
-## État actuel (v0.5)
+## État actuel (v0.5 terminée, v0.6 en cours)
 
 - Tetris complet (v0.1)
 - Catalogue avec Space Invaders (v0.3), Frogger (v0.4), Asteroids (v0.5)
@@ -13,6 +13,7 @@ Application Android native (Kotlin + Jetpack Compose) proposant un catalogue de 
 - Sons (`ToneGenerator`) sur verrouillage et fin de partie
 - Bandeau visible et boutons non masqués (`statusBarsPadding` / `navigationBarsPadding`)
 - Tests unitaires (`GameEngineTest`) passants
+- Documentation monétisation (`docs/ADS_AND_BILLING.md`)
 - APK debug : `app/build/outputs/apk/debug/app-debug.apk`
 
 ## Stack technique

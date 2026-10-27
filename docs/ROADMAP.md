@@ -25,5 +25,13 @@
 ## v0.4 — Frogger
 - Jeu complet, contrôles tactiles adaptés.
 
-## v0.5 — Asteroids
-- Collisions et projectiles.
+## v0.5 — Asteroids (terminée)
+- Collisions, projectiles, moteur complet.
+- Intégration dans le catalogue.
+
+## v0.6 — Monétisation et Play Store (en cours)
+- AdMob (mode test) : documentation et identifiant de test (`docs/ADS_AND_BILLING.md`)
+- Google Play Billing : produits définis (premium + abonnement)
+- Keystore et procédure de signature (`docs/ADS_AND_BILLING.md`)
+- Politique de confidentialité (à rédiger)
+- Tests instrumentés et APK release signée (étapes restantes avant publication)
